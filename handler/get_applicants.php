@@ -9,9 +9,9 @@ if (isset($_GET['id'])) {
     $stmt->bindParam(':opportunityID', $opportunityID, PDO::PARAM_INT);
 
 } else {
-    $query = "SELECT * FROM aplicants";
+    $query = "SELECT * FROM applicants";
     $stmt = $conn->prepare($query);
-    
+
 }
 
 $stmt->execute();
