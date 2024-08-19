@@ -1,9 +1,8 @@
-<?php
-require_once('dbconfig.php');
+{# <?php
+require_once('mysqli.php');
 define('SALT_LENGTH', 9);
 class DBHelper
 {
-
     private $conn;
     public function __construct()
     {
@@ -299,4 +298,4 @@ class DBHelper
     }
 
     
-}
+} #}

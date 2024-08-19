@@ -1,6 +1,5 @@
 <body>
         <div class="sidebar">
-           
             <a href="post-opportunity.php">Opportunities</a>
             <a href="view-applications.php">Applications</a>
             <a href="rate-users.php">Rate Users</a>
