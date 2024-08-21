@@ -1,6 +1,7 @@
 <?php
 // Include DB connection
 include_once '../../handler/dbconfig.php';
+session_start();
 
 // Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -22,8 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':id', $id);
         } else {
             // Insert new record
-            $query = "INSERT INTO opportunity (Tittle, Description, Type, Requirements, StartDate, EndDate, ApplicationDeadline) VALUES (:title, :descr, :type, :requir, :start_date, :end_date, :applica)";
+            $query = "INSERT INTO opportunity (CompanyID, Tittle, Description, Type, Requirements, StartDate, EndDate, ApplicationDeadline) VALUES (:companyID ,:title, :descr, :type, :requir, :start_date, :end_date, :applica)";
             $stmt = $conn->prepare($query);
+            $stmt->bindParam(':companyID', $_SESSION['id']);
             $stmt->bindParam(':title', $_POST['title']);
             $stmt->bindParam(':descr', $_POST['descr']);
             $stmt->bindParam(':type', $_POST['type']);
@@ -89,7 +91,7 @@ include '../../assets/components/sidebar.php'; ?>
                                         </button>
 
                                         <h3 class="card-title"><?php echo htmlspecialchars($ops['Tittle']); ?></h3>
-                                        <h6 class="card-subtitle mb-2 text-muted"><?php echo htmlspecialchars($ops['Type']); ?></h6>
+                                        <h6 class="card-subtitle mb-2 text-muted"><strong>Type:</strong>  <?php echo htmlspecialchars($ops['Type']); ?></h6>
                                         <p class="card-text"><?php echo htmlspecialchars($ops['Description']); ?></p>
                                         <p><strong>Requirements:</strong> <?php echo htmlspecialchars($ops['Requirements']); ?></p>
                                         <p><strong>Start Date:</strong> <?php echo htmlspecialchars($ops['StartDate']); ?></p>

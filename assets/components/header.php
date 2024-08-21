@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../assets/style.css" rel="stylesheet">
-    <link href="../../assets/style2.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/style3.css">
+    <link href="../../assets/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/style2.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style3.css">
 </head>

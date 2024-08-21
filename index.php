@@ -1,54 +1,37 @@
 <?php
-include_once './handler/DB.php';
-$db = new DBhelper();
-$it = $db->getRows("specialist");
+include 'assets/components/header.php';
+include 'assets/components/navbar.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <title>Company Registration - Zanzibar Tech Opportunities</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="./assets/style.css" rel="stylesheet">
-    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-light d-flex flex-column min-vh-100">
-
-
-    <!-- Main Content -->
-    <section class="flex-grow-1">
-        <div class="container p-5">
-            <div class="row">
-                <div class="col-lg-5 mx-auto">
-                    <div class="card p-5 shadow">
-                        <form id="signin-form" action="authenticate.php" method="POST">
-                            <h2 class="text-center">Sign In</h2>
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email </label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <p class="mt-3">Forgot Password?</p>
-                            <button name="signin" type="submit" class="btn w-100 btn-primary btn-success mt-1">Sign In</button>
-                        </form>
-                        <div class="text-center mt-3">
-                            <p>Don't have an account? <a class="text-success" href="signup.php">Sign Up</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>WELCOME TO ZAN TECH OPPORTUNITIES</h1>
+            <p>Your gateway to exciting job opportunities in Zanzibar.</p>
+            <p>Join a vibrant tech community and contribute to groundbreaking projects in the fields of e-commerce, tourism, and more. Be a part of Zanzibar's tech revolution.</p>
+            <a href="signup.php" class="btn btn-success p-3">Getting Started</a>
         </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+    <!-- Services Section -->
+    <section id="service" class="services bg-white">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p>We offer a wide range of services to help you succeed in the tech industry:</p>
+            <p><strong>Job Placement:</strong> Connecting you with top employers in Zanzibar.</p>
+            <p><strong>Training Programs:</strong> Providing you with the skills needed to excel in your career.</p>
+            <p><strong>Networking Events:</strong> Opportunities to meet and collaborate with industry professionals.</p>
+        </div>
+    </section>
 
-</html>
+    <!-- Contact Section -->
+    <section id="contact" class="contact bg-light">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Have questions or need more information? Reach out to us:</p>
+            <p><strong>Email:</strong> info@zantechopportunities.com</p>
+            <p><strong>Phone:</strong> +255 123 456 789</p>
+            <p><strong>Address:</strong> 123 Tech Road, Zanzibar City, Tanzania</p>
+        </div>
+    </section>
+

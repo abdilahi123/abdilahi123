@@ -1,37 +1,59 @@
-<?php
-include '../assets/components/header.php';
-include '../assets/components/navbar.php';
-?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Company Registration - Zanzibar Tech Opportunities</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="./assets/style.css" rel="stylesheet"> -->
+    <link href="../assets/css/toastr.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js
+"></script>
+    <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css
+" rel="stylesheet">
+
+    <link href="../assets/css/login.css" rel="stylesheet">
+
+</head>
 
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>WELCOME TO ZAN TECH OPPORTUNITIES</h1>
-            <p>Your gateway to exciting job opportunities in Zanzibar.</p>
-            <p>Join a vibrant tech community and contribute to groundbreaking projects in the fields of e-commerce, tourism, and more. Be a part of Zanzibar's tech revolution.</p>
-            <a href="signup.php" class="btn btn-success p-3">Getting Started</a>
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <?php require '../handler/login.php'; ?>
+
+    <!-- Main Content -->
+    <section class="flex-grow-1 d-flex align-items-center">
+        <div class="container" id="container">
+            <div class="form-container sign-in-container">
+                <form action="" method="POST">
+                    <h1>Sign in</h1>
+                    <span>or use your account</span>
+                    <input type="email" name="email" placeholder="Email" />
+                    <input type="password" name="password" placeholder="Password" />
+                    <!-- <a href="#">Forgot your password?</a> -->
+                    <input type="submit" class="login_btn" value="Sign In">
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your personal details and start journey with us</p>
+                         <a href="signup.php"><button class="login_btn" id="signUp">Sign Up</button></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+    <script src="../bootstrap/jquery/jquery.slim.min.js"></script>
+    <script src="../assets/js/myScript.js"></script>
+    <script src="../assets/js/toastr.js"></script>
+</body>
 
-    <!-- Services Section -->
-    <section id="service" class="services bg-white">
-        <div class="container">
-            <h2>Our Services</h2>
-            <p>We offer a wide range of services to help you succeed in the tech industry:</p>
-            <p><strong>Job Placement:</strong> Connecting you with top employers in Zanzibar.</p>
-            <p><strong>Training Programs:</strong> Providing you with the skills needed to excel in your career.</p>
-            <p><strong>Networking Events:</strong> Opportunities to meet and collaborate with industry professionals.</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact bg-light">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Have questions or need more information? Reach out to us:</p>
-            <p><strong>Email:</strong> info@zantechopportunities.com</p>
-            <p><strong>Phone:</strong> +255 123 456 789</p>
-            <p><strong>Address:</strong> 123 Tech Road, Zanzibar City, Tanzania</p>
-        </div>
-    </section>
-
+</html>

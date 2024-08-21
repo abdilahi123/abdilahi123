@@ -8,16 +8,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Services</a>
+                        <a class="nav-link" href="#service">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  text-white" href="signin.php">Login</a>
+                        <a class="nav-link  text-white" href="pages">Login</a>
                     </li>
                 </ul>
             </div>
