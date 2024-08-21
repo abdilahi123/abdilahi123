@@ -17,7 +17,7 @@
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  text-white" href="pages">Login</a>
+                        <a class="nav-link  text-white" href="pages/index.php">Login</a>
                     </li>
                 </ul>
             </div>

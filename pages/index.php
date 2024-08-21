@@ -8,8 +8,8 @@
     <!-- <link href="./assets/style.css" rel="stylesheet"> -->
     <link href="../assets/css/toastr.css" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js
-"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css
 " rel="stylesheet">
 

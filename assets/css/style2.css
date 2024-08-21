@@ -128,3 +128,6 @@
 .dropdown-menu.show {
   display: block;
 }
+.specialist-container{
+  border-radius: 30px;
+}

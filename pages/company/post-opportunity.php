@@ -49,8 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 // Fetch opportunities
 try {
-    $query2 = "SELECT * FROM opportunity";
+    $query2 = "SELECT * FROM opportunity o where o.CompanyID = :CompanyID";
     $stmt = $conn->prepare($query2);
+    $stmt->bindParam(':CompanyID', $_SESSION['id'], PDO::PARAM_INT);
     $stmt->execute();
     $Opp = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
