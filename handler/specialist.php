@@ -19,3 +19,53 @@ $stmt = $conn->prepare("SELECT opportunityID FROM applicants WHERE SpecialistId 
 $stmt->execute([':id' => $id]);
 $oppIds = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
+
+if (!$id) {
+    echo 'Specialist ID not found';
+    exit;
+}
+
+try {
+
+    // Prepare and execute the SQL query
+    $stmt = $conn->prepare("
+        SELECT applicants.*, opportunity.*
+        FROM applicants
+        JOIN opportunity ON applicants.opportunityID = opportunity.opportunityID
+        WHERE applicants.specialistID = :specialistID
+    ");
+    $stmt->execute(['specialistID' => $id]);
+
+    // Fetch the results
+    $applicants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    echo 'Database error: ' . $e->getMessage();
+    exit;
+}
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $opportunityID = $_POST['opportunityID'] ?? null;
+
+    if (!$opportunityID) {
+        echo 'Opportunity ID not provided';
+        exit;
+    }
+
+    try {
+        // Prepare and execute the SQL query
+        $stmt = $conn->prepare("
+            DELETE FROM applicants
+            WHERE opportunityID = :opportunityID
+        ");
+        $stmt->execute(['opportunityID' => $opportunityID]);
+        exit;
+
+    } catch (PDOException $e) {
+        echo 'Database error: ' . $e->getMessage();
+        exit;
+    }
+}
+

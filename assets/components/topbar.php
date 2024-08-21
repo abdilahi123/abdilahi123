@@ -5,7 +5,9 @@
             <img src="../../assets/images/avatar.png" alt="Avatar" class="avatar" id="avatar">
             <div class="dropdown-menu" id="dropdown-menu">
                 <a href="profile.php">My Profile</a>
-                <a href="#" ><li  id="logout-link" data-bs-toggle="modal" data-bs-target="#logoutModal" >Logout</li></a>
+                <a href="#">
+                    <li id="logout-link" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</li>
+                </a>
             </div>
         </div>
     </div>
@@ -24,7 +26,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a href="../../handler/logout.php" class="btn btn-danger">Logout</a>
+                <form action="../../handler/logout.php" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
             </div>
         </div>
     </div>

@@ -65,7 +65,7 @@ include '../../assets/components/header.php';
                 <div class="github mb-4">
                     <h5 class="text-success">GitHub</h5>
                     <ul class="list-unstyled">
-                        <li><strong>GitHub:</strong> <a class="text-success" href="https://github.com/nahida" target="_blank">nahida</a></li>
+                        <li><strong>GitHub:</strong> <a class="text-success" href="https://github.com/nahida" target="_blank"> <?php echo htmlspecialchars($it[0]['GitHub_Username']); ?></a></li>
                     </ul>
                 </div>
 
@@ -110,7 +110,7 @@ include '../../assets/components/header.php';
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="application_handler.php" id="applicationForm" method="post" enctype="multipart/form-data">
+                                            <form action="../../handler/uploadLetter.php" id="applicationForm" method="post" enctype="multipart/form-data">
                                                 <input name="opportunityID" type="hidden" value="<?= htmlspecialchars($ops['opportunityID']) ?>">
                                                 <input name="SpecialistID" type="hidden" value="<?= htmlspecialchars($id) ?>">
                                                 <div class="form-group">
@@ -132,26 +132,39 @@ include '../../assets/components/header.php';
         <div class="section">
             <h2>My Applications</h2>
             <ul class="list">
-                <?php foreach ($Opp_2 as $opp) { ?>
-                    <li class="item" data-id="<?php echo htmlspecialchars($opp['opportunityID']) ?>">
-                        <div class="details">
-                            <div>
-                                <div class="title">Title: <?php echo htmlspecialchars($opp['Tittle']) ?></div>
-                                <div class="company">Type: <?php echo htmlspecialchars($opp['Type']) ?></div>
-                                <div class="company">Requirements: <?php echo htmlspecialchars($opp['Requirements']) ?></div>
-                                <div class="company">Start Date: <?php echo htmlspecialchars($opp['StartDate']) ?></div>
-                                <div class="company">End Date: <?php echo htmlspecialchars($opp['EndDate']) ?></div>
-                                <div class="company">Description: <?php echo htmlspecialchars($opp['Description']) ?></div>
-                                <div class="company">Deadline: <?php echo htmlspecialchars($opp['ApplicationDeadline']) ?></div>
+                <?php
+
+                if (!empty($applicants)) {
+                    foreach ($applicants as $opp) {
+                ?>
+                        <li class="item" data-id="<?php echo htmlspecialchars($opp['opportunityID']); ?>">
+                            <div class="details">
+                                <div>
+                                    <div class="title">Title: <?php echo htmlspecialchars($opp['Tittle']); ?></div>
+                                    <div class="company">Type: <?php echo htmlspecialchars($opp['Type']); ?></div>
+                                    <div class="company">Requirements: <?php echo htmlspecialchars($opp['Requirements']); ?></div>
+                                    <div class="company">Start Date: <?php echo htmlspecialchars($opp['StartDate']); ?></div>
+                                    <div class="company">End Date: <?php echo htmlspecialchars($opp['EndDate']); ?></div>
+                                    <div class="company">Description: <?php echo htmlspecialchars($opp['Description']); ?></div>
+                                    <div class="company">Deadline: <?php echo htmlspecialchars($opp['ApplicationDeadline']); ?></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="actions">
-                            <button class="btn btn-delete">Delete</button>
-                        </div>
-                    </li>
-                <?php } ?>
+                            <div class="actions">
+                                <form action="../path/to/delete_application.php" method="post" onsubmit="return confirm('Are you sure you want to delete this application?');">
+                                    <input type="hidden" name="opportunityID" value="<?php echo htmlspecialchars($opp['opportunityID']); ?>">
+                                    <button type="submit" class="btn btn-delete">Delete</button>
+                                </form>
+                            </div>
+                        </li>
+                <?php
+                    }
+                } else {
+                    echo '<li>No applications found.</li>';
+                }
+                ?>
             </ul>
         </div>
+
         <div class="section">
             <div class="row my-3">
                 <div class="col-lg-6">
@@ -160,18 +173,22 @@ include '../../assets/components/header.php';
             </div>
         </div>
 
-        <!-- Logout Modal -->
-        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Logout Confirmation Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-body">
+                        Are you sure you want to log out?
+                    </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="handler/logout.php">Logout</a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form action="../../handler/logout.php" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-danger">Logout</button>
+                        </form>
                     </div>
                 </div>
             </div>
