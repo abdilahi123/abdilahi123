@@ -2,7 +2,7 @@
 $host = 'localhost';
 $db_name = 'zantech';
 $username = 'root';
-$password = 'admin1234';
+$password = '';
 
 try {
     // Set the DSN (Data Source Name)
