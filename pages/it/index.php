@@ -1,5 +1,3 @@
-
-
 <?php
 include '../../handler/specialist.php';
 
@@ -48,40 +46,44 @@ include '../../assets/components/header.php';
             </a>
         </div>
 
-        <div class="section">
-            <h2>Profile</h2>
+        <div class="section text-center">
+            <h2 class="text-center mb-4">Profile</h2>
+            <!-- Rounded Image Section -->
+            <div class="mb-4">
+                <img src="../../assets/images/avatar.png" alt="Profile Picture" class="img-fluid rounded-circle" style="max-width: 150px;">
+            </div>
             <div class="profile-content">
-                <div class="personal-details">
+                <div class="personal-details mb-4">
                     <h5 class="text-success">Personal Details</h5>
-                    <ul>
-                        <li>Name: <?php echo htmlspecialchars($it[0]['FullName']); ?></li>
-                        <li>Email: <?php echo htmlspecialchars($it[0]['Email']); ?></li>
-                        <li>Phone: <?php echo htmlspecialchars($it[0]['phone_Number']); ?></li>
+                    <ul class="list-unstyled">
+                        <li><strong>Name:</strong> <?php echo htmlspecialchars($it[0]['FullName']); ?></li>
+                        <li><strong>Email:</strong> <?php echo htmlspecialchars($it[0]['Email']); ?></li>
+                        <li><strong>Phone:</strong> <?php echo htmlspecialchars($it[0]['phone_Number']); ?></li>
                     </ul>
                 </div>
 
-                <div class="github">
+                <div class="github mb-4">
                     <h5 class="text-success">GitHub</h5>
-                    <ul>
-                        <li>GitHub: <a class="text-success" href="https://github.com/nahida" target="_blank">nahida</a></li>
+                    <ul class="list-unstyled">
+                        <li><strong>GitHub:</strong> <a class="text-success" href="https://github.com/nahida" target="_blank">nahida</a></li>
                     </ul>
                 </div>
 
-                <div class="others">
+                <div class="others mb-4">
                     <h5 class="text-success">Others</h5>
-                    <ul>
-                        <li>View CV: <a class="text-success" href="https://github.com/nahida" target="_blank">My CV</a></li>
+                    <ul class="list-unstyled">
+                        <li><strong>View CV:</strong> <a class="text-success" href="https://github.com/nahida" target="_blank">My CV</a></li>
                     </ul>
                 </div>
 
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <button class="btn btn-success m-1 float-end">Update Profile</button>
-                        <button class="btn btn-secondary m-1 float-end">Share Profile</button>
-                    </div>
+                <div class="d-flex justify-content-end mt-3">
+                    <button class="btn btn-success m-1">Update Profile</button>
+                    <button class="btn btn-secondary m-1">Share Profile</button>
                 </div>
             </div>
         </div>
+
+
 
         <div class="section">
             <h2>Available Opportunities</h2>

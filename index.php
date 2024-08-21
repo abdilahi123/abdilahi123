@@ -9,7 +9,7 @@ include 'assets/components/navbar.php';
             <h1>WELCOME TO ZAN TECH OPPORTUNITIES</h1>
             <p>Your gateway to exciting job opportunities in Zanzibar.</p>
             <p>Join a vibrant tech community and contribute to groundbreaking projects in the fields of e-commerce, tourism, and more. Be a part of Zanzibar's tech revolution.</p>
-            <a href="signup.php" class="btn btn-success p-3">Getting Started</a>
+            <a href="pages/index.php" class="btn btn-success p-3">Getting Started</a>
         </div>
     </section>
 

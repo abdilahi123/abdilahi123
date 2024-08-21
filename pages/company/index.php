@@ -14,4 +14,4 @@ include '../../assets/components/sidebar.php'
         </div>
     </div>
 </div>
-</div>
+<?php include '../../assets/components/footer.php'; ?>

@@ -8,10 +8,9 @@
         <div class="content">
             <div class="card">
                 <div class="row">
-                    <?php require "../../assets/components/profilecard.php"; ?>
+                    <?php include "../../assets/components/profilecard.php"; ?>
                 </div>
             </div>
         </div>
-
-        </body>
-        <?php include '../../assets/components/footer.php'; ?>
+    </div>
+    <?php include '../../assets/components/footer.php'; ?>

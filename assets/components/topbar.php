@@ -5,7 +5,7 @@
             <img src="../../assets/images/avatar.png" alt="Avatar" class="avatar" id="avatar">
             <div class="dropdown-menu" id="dropdown-menu">
                 <a href="profile.php">My Profile</a>
-                <a href="#" ><li href="#" id="logout-link" data-bs-toggle="modal" data-bs-target="#logoutModal" >Logout</li></a>
+                <a href="#" ><li  id="logout-link" data-bs-toggle="modal" data-bs-target="#logoutModal" >Logout</li></a>
             </div>
         </div>
     </div>
