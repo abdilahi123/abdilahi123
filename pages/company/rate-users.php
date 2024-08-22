@@ -1,4 +1,5 @@
     <?php
+    include '../../assets/components/compSession.php';
     include '../../assets/components/header.php';
     include '../../assets/components/sidebar.php'; ?>
     <div class="main-content">
@@ -13,4 +14,6 @@
             </div>
         </div>
     </div>
-    <?php include '../../assets/components/footer.php'; ?>
+    <?php
+    include '../../assets/components/footer.php';
+    ?>

@@ -1,6 +1,6 @@
 <?php
+include '../../assets/components/itSession.php';
 include '../../handler/specialist.php';
-
 include '../../assets/components/header.php';
 ?>
 <script>
@@ -39,7 +39,6 @@ include '../../assets/components/header.php';
             <div class="tab">Profile</div>
             <div class="tab">Available Opportunities</div>
             <div class="tab">My Applications</div>
-            <div class="tab">Messages</div>
             <a class="tab" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Logout
@@ -48,7 +47,22 @@ include '../../assets/components/header.php';
 
         <div class="section text-center">
             <h2 class="text-center mb-4">Profile</h2>
-            <!-- Rounded Image Section -->
+            <div class="rating">
+                <?php
+                // Fetch average rating for this specialist
+                $ratingQuery = "SELECT AVG(rating) as avgRating FROM ratings WHERE SpecialistID = :SpecialistID";
+                $ratingStmt = $conn->prepare($ratingQuery);
+                $ratingStmt->bindParam(':SpecialistID', $_SESSION['id'], PDO::PARAM_INT);
+                $ratingStmt->execute();
+                $ratingResult = $ratingStmt->fetch(PDO::FETCH_ASSOC);
+                $averageRating = round($ratingResult['avgRating']);
+
+                // Display stars
+                for ($i = 1; $i <= 5; $i++) {
+                    echo '<span class="fa fa-star"' . ($i <= $averageRating ? ' style="color: gold;"' : '') . '></span>';
+                }
+                ?>
+            </div>
             <div class="mb-4">
                 <img src="../../assets/images/avatar.png" alt="Profile Picture" class="img-fluid rounded-circle" style="max-width: 150px;">
             </div>
@@ -89,6 +103,7 @@ include '../../assets/components/header.php';
             <h2>Available Opportunities</h2>
             <ul class="list">
                 <?php foreach ($Opp as $ops) { ?>
+
                     <li class="item">
                         <div class="details">
                             <div>
@@ -98,11 +113,11 @@ include '../../assets/components/header.php';
                             </div>
                         </div>
                         <div class="actions">
-                            <button class="btn btn-apply btn-primary" data-bs-toggle="modal" data-bs-target="#applicationModal">Apply</button>
+                            <button class="btn btn-apply btn-primary" data-bs-toggle="modal" data-bs-target="#applicationModal<?= htmlspecialchars($ops['opportunityID']) ?>">Apply</button>
 
 
                             <!-- Application Modal -->
-                            <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="applicationModal<?= htmlspecialchars($ops['opportunityID']) ?>" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -143,14 +158,15 @@ include '../../assets/components/header.php';
                                     <div class="title">Title: <?php echo htmlspecialchars($opp['Tittle']); ?></div>
                                     <div class="company">Type: <?php echo htmlspecialchars($opp['Type']); ?></div>
                                     <div class="company">Requirements: <?php echo htmlspecialchars($opp['Requirements']); ?></div>
-                                    <div class="company">Start Date: <?php echo htmlspecialchars($opp['StartDate']); ?></div>
-                                    <div class="company">End Date: <?php echo htmlspecialchars($opp['EndDate']); ?></div>
                                     <div class="company">Description: <?php echo htmlspecialchars($opp['Description']); ?></div>
-                                    <div class="company">Deadline: <?php echo htmlspecialchars($opp['ApplicationDeadline']); ?></div>
+                                    <div class="company"><b> Feedback: </b> <?php echo htmlspecialchars($opp['message']); ?></div>
+
                                 </div>
                             </div>
                             <div class="actions">
-                                <form action="../path/to/delete_application.php" method="post" onsubmit="return confirm('Are you sure you want to delete this application?');">
+                                <input type="submit" disabled class="btn btn-success" value="<?php echo htmlspecialchars($opp['Status']); ?>">
+
+                                <form action="../../handler/deleteApp.php" method="post" onsubmit="return confirm('Are you sure you want to delete this application?');">
                                     <input type="hidden" name="opportunityID" value="<?php echo htmlspecialchars($opp['opportunityID']); ?>">
                                     <button type="submit" class="btn btn-delete">Delete</button>
                                 </form>
@@ -163,14 +179,6 @@ include '../../assets/components/header.php';
                 }
                 ?>
             </ul>
-        </div>
-
-        <div class="section">
-            <div class="row my-3">
-                <div class="col-lg-6">
-                    <h2>Messages</h2>
-                </div>
-            </div>
         </div>
 
         <!-- Logout Confirmation Modal -->

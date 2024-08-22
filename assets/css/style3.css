@@ -1,3 +1,7 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700");
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -255,10 +259,21 @@ h1 {
   background-color: #f44336;
   color: white;
 }
-.oppoBtn{
-    margin-left: 82%;
+.oppoBtn {
+  margin-left: 82%;
 }
-.oppoTab{
-    display: inline-flex;
-    align-items: center;
+.oppoTab {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-block .fa {
+  font-size: 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  /* Make stars clickable */
+}
+
+.icon-block {
+  margin-top: 10px;
 }

@@ -44,28 +44,3 @@ try {
     exit;
 }
 
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $opportunityID = $_POST['opportunityID'] ?? null;
-
-    if (!$opportunityID) {
-        echo 'Opportunity ID not provided';
-        exit;
-    }
-
-    try {
-        // Prepare and execute the SQL query
-        $stmt = $conn->prepare("
-            DELETE FROM applicants
-            WHERE opportunityID = :opportunityID
-        ");
-        $stmt->execute(['opportunityID' => $opportunityID]);
-        exit;
-
-    } catch (PDOException $e) {
-        echo 'Database error: ' . $e->getMessage();
-        exit;
-    }
-}
-

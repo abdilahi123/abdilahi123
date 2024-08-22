@@ -1,7 +1,5 @@
 <style>
-    @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-    @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
-    @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700");
+
 
     body {
         font-family: "Open Sans", sans-serif;
@@ -323,29 +321,9 @@
         position: relative;
     }
 
-    .profile-card-4 .card-img-block>.info-box {
-        position: absolute;
-        background: rgba(217, 11, 225, 0.6);
-        width: 100%;
-        height: 100%;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        font-size: 14px;
-        -webkit-transition: 1s ease;
-        transition: 1s ease;
-        opacity: 0;
-    }
-
-    .profile-card-4 .card-img-block:hover>.info-box {
-        opacity: 1;
-        -webkit-transition: all 1s ease;
-        transition: all 1s ease;
-    }
-
     .profile-card-4 h5 {
         font-weight: 600;
-        color: #d90be1;
+        color: #004d00;
     }
 
     .profile-card-4 .card-text {
@@ -365,9 +343,9 @@
     .profile-card-4 i {
         display: inline-block;
         font-size: 16px;
-        color: #d90be1;
+        color: #004d00;
         text-align: center;
-        border: 1px solid #d90be1;
+        border: 1px solid #004d00;
         width: 30px;
         height: 30px;
         line-height: 30px;
@@ -376,8 +354,8 @@
     }
 
     .profile-card-4 i:hover {
-        background-color: #d90be1;
-        color: #fff;
+        background-color: #004d00;
+        color: #004d00;
     }
 
     /*Profile Card 5*/
@@ -422,93 +400,7 @@
     .checked {
         color: orange;
     }
-
-    .icon-block .fa {
-        font-size: 20px;
-        margin: 0 5px;
-        cursor: pointer;
-        /* Make stars clickable */
-    }
-
-    .icon-block {
-        margin-top: 10px;
-    }
 </style>
 
 
-<?php require '../handler/applicants.php'; ?>
-
-<div class="col-md-4">
-    <div class="card profile-card-4">
-        <div class="card-img-block">
-            <div class="info-box">
-                <?php echo htmlspecialchars($user['description']); ?> <!-- Replace with the appropriate field -->
-            </div>
-            <img class="img-fluid" src="../../assets/images/background.avif" alt="Card image cap"> 
-        </div>
-        <div class="card-body pt-5">
-            <img src="../../assets/images/profile.jpg" alt="profile-image" class="profile" /> <!-- Replace with the appropriate field for profile image -->
-            <h5 class="card-title text-center">
-                <?php echo htmlspecialchars($user['FullName']); ?> 
-            </h5>
-            <p class="card-text text-center">
-                <?php echo htmlspecialchars($user['Expirience']); ?> 
-            </p>
-            <div class="icon-block text-center">
-                <div class="icon-block text-center"><a href="#">
-                    <i class="fa fa-github"></i></a>
-                </div>
-                <span class="fa fa-star" data-value="1"></span>
-                <span class="fa fa-star" data-value="2"></span>
-                <span class="fa fa-star" data-value="3"></span>
-                <span class="fa fa-star" data-value="4"></span>
-                <span class="fa fa-star" data-value="5"></span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const stars = document.querySelectorAll('.icon-block .fa');
-        let selectedRating = 0;
-
-        stars.forEach(star => {
-            star.addEventListener('click', function() {
-                selectedRating = this.getAttribute('data-value');
-                highlightStars(selectedRating);
-                sendRatingToServer(selectedRating); // Send the rating to the server
-            });
-
-            star.addEventListener('mouseover', function() {
-                highlightStars(this.getAttribute('data-value'));
-            });
-
-            star.addEventListener('mouseout', function() {
-                highlightStars(selectedRating);
-            });
-        });
-
-        function highlightStars(rating) {
-            stars.forEach(star => {
-                star.classList.remove('checked');
-                if (star.getAttribute('data-value') <= rating) {
-                    star.classList.add('checked');
-                }
-            });
-        }
-
-        function sendRatingToServer(rating) {
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "../../handler/save_rating.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log('Server response:', xhr.responseText);
-                }
-            };
-            xhr.send("rating=" + rating + "&user_id=1"); // Replace 1 with the actual user ID or another identifier
-        }
-    });
-</script>
+<?php require '../../handler/applicants.php'; ?>

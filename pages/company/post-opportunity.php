@@ -1,5 +1,5 @@
 <?php
-// Include DB connection
+include '../../assets/components/compSession.php';
 include_once '../../handler/dbconfig.php';
 session_start();
 
