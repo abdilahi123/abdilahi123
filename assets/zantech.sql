@@ -30,12 +30,13 @@ CREATE TABLE `applicants` (
   `ApplicationDate` date NOT NULL DEFAULT current_timestamp(),
   `LetterPath` varchar(255) NOT NULL,
   `Status` varchar(255) NOT NULL DEFAULT 'Pending',
+  `message` text DEFAULT NULL,
   PRIMARY KEY (`ApplicantID`),
   KEY `applicants_id` (`opportunityID`),
   KEY `applicants_fk` (`SpecialistID`),
   CONSTRAINT `applicants_fk` FOREIGN KEY (`SpecialistID`) REFERENCES `specialist` (`SpecialistID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `applicants_ibfk_1` FOREIGN KEY (`opportunityID`) REFERENCES `opportunity` (`opportunityID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +44,9 @@ CREATE TABLE `applicants` (
 --
 
 /*!40000 ALTER TABLE `applicants` DISABLE KEYS */;
+INSERT INTO `applicants` VALUES
+(40,14,39,'2024-08-22','file_66c719c37df0e3.11682304.pdf','Accepted','Hyyy'),
+(42,15,39,'2024-08-22','file_66c71a6493fd74.18151103.pdf','Rejected','Hey');
 /*!40000 ALTER TABLE `applicants` ENABLE KEYS */;
 
 --
@@ -60,7 +64,7 @@ CREATE TABLE `company` (
   `Phone` varchar(12) NOT NULL,
   `Address` varchar(255) NOT NULL,
   PRIMARY KEY (`CompanyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +72,9 @@ CREATE TABLE `company` (
 --
 
 /*!40000 ALTER TABLE `company` DISABLE KEYS */;
+INSERT INTO `company` VALUES
+(24,'Nahida Company','nahida@gmail.com','$2y$10$hF2FLrbHgj8P93o4xOpeC.KI5BqGio3yIHcV.KeaiUYvaa5df.qhq','07777','Mambasa, Zanzibar, Tanzania'),
+(25,'Usama Company','usama.lion65@gmail.com','$2y$10$jFL9Urn5sxg37RnaPzgiqu7YuEvdu6E48lYQ5l0krxj0YvUfFs2f.','07777','Mambasa, Zanzibar, Tanzania');
 /*!40000 ALTER TABLE `company` ENABLE KEYS */;
 
 --
@@ -86,7 +93,7 @@ CREATE TABLE `company_opportunity` (
   KEY `CompanyID` (`CompanyID`),
   CONSTRAINT `company_opportunity_ibfk_1` FOREIGN KEY (`CompanyID`) REFERENCES `company` (`CompanyID`),
   CONSTRAINT `opportunityID` FOREIGN KEY (`opportunityid`) REFERENCES `opportunity` (`opportunityID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +119,7 @@ CREATE TABLE `messages` (
   `message` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +156,7 @@ CREATE TABLE `opportunity` (
   `EndDate` date NOT NULL,
   `ApplicationDeadline` date NOT NULL,
   PRIMARY KEY (`opportunityID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +165,9 @@ CREATE TABLE `opportunity` (
 
 /*!40000 ALTER TABLE `opportunity` DISABLE KEYS */;
 INSERT INTO `opportunity` VALUES
-(12,23,'Networing','Connecting WIfi Network','Full Time','No Req','2024-08-22','2024-08-22','2024-08-21');
+(13,25,'SOftware Development','Connecting WIfi','Full Time','No Req','2024-08-22','2024-08-22','2024-08-31'),
+(14,25,'CYber Talent ','Connecting WIfi','Full Time','No Req','2024-08-01','2024-08-07','2024-08-23'),
+(15,24,'Training ','Connecting WIfi','Full Time','No Req','2024-08-14','2024-08-23','2024-08-23');
 /*!40000 ALTER TABLE `opportunity` ENABLE KEYS */;
 
 --
@@ -170,13 +179,13 @@ DROP TABLE IF EXISTS `ratings`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ratings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `loginID` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `SpecialistID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `loginID` (`loginID`),
-  CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`loginID`) REFERENCES `credentials` (`LoginID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `SpecialistID` (`SpecialistID`),
+  CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`SpecialistID`) REFERENCES `specialist` (`SpecialistID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,6 +193,10 @@ CREATE TABLE `ratings` (
 --
 
 /*!40000 ALTER TABLE `ratings` DISABLE KEYS */;
+INSERT INTO `ratings` VALUES
+(13,4,'2024-08-22 12:29:00',39),
+(14,3,'2024-08-22 12:53:50',39),
+(15,1,'2024-08-22 12:53:54',39);
 /*!40000 ALTER TABLE `ratings` ENABLE KEYS */;
 
 --
@@ -204,7 +217,7 @@ CREATE TABLE `specialist` (
   `Role` varchar(255) DEFAULT NULL,
   `Password` text DEFAULT NULL,
   PRIMARY KEY (`SpecialistID`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +226,7 @@ CREATE TABLE `specialist` (
 
 /*!40000 ALTER TABLE `specialist` DISABLE KEYS */;
 INSERT INTO `specialist` VALUES
-(38,'nahida','nahida@gmail.com',7777,'nahidaGit','','4',NULL,'$2y$10$KQkpuQecGFCr1Yqk3p/0M.ozTKC/.mpXqc6fvGweR6iOqnM0qB6q6');
+(39,'Usama Talib Juma','mamenmasau@gmail.com',17777,'usmataleb','Programmer','1',NULL,'$2y$10$Mq5wJVTLxSJeneZvFG7SRuR4Hje0KmMrL9VHTkKxYuB/Q7YeuQJO2');
 /*!40000 ALTER TABLE `specialist` ENABLE KEYS */;
 
 --
@@ -230,7 +243,7 @@ CREATE TABLE `specialistopportunity` (
   PRIMARY KEY (`SpecialistOpportunityID`),
   KEY `SpecialistID` (`SpecialistID`),
   CONSTRAINT `specialistopportunity_ibfk_1` FOREIGN KEY (`SpecialistID`) REFERENCES `specialist` (`SpecialistID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,4 +266,4 @@ CREATE TABLE `specialistopportunity` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2024-08-21 11:46:28
+-- Dump completed on 2024-08-22 16:05:09
